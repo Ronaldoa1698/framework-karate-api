@@ -1,0 +1,33 @@
+name: Karate API Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_tag:
+        description: 'Tag del escenario a ejecutar (ej: @smoke)'
+        required: true
+        default: '@smokePostOrder'
+        type: string
+jobs:
+  karate-tests:
+    runs-on: Ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Setup Java 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    - name: Run Karate Tests
+      run: |
+        set -e
+        TAG="${{ github.event.inputs.test_tag }}"
+        echo "Ejecutando mvn test -Dkarate.options=\"--tags ${TAG}\""
+        mvn test -Dkarate.options="--tags ${TAG}"
+    - name: Upload Test Reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: karate-reports
+        path: target/karate-reports/
