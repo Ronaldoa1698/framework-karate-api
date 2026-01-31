@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# framework-karate-api
-=======
 # Guía de Uso del Framework Karate
 
 Este proyecto utiliza el framework Karate para pruebas de API. El proyecto está estructurado en Java, JavaScript y Maven.
@@ -81,4 +78,3 @@ Notas importantes:
 - No necesitas credenciales locales para que Actions ejecute el workflow; todo se ejecuta en runners de GitHub.
 - Si el nombre del escenario contiene espacios se deberá cuidar el quoting, pero para tags normales no es necesario.
 ```
->>>>>>> 36f95a9 (Initial commit)
